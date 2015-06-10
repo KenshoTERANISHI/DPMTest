@@ -51,7 +51,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	cluster2 = dpm.GetClusteringResult2();
 	for (int i = 0; i<cluster2.size(); i++)
 	{
-		printf("%d	->	%d\n\n", i, cluster2[i]);
+		printf("%d	->	%d\n", i, cluster2[i]);
 	}
 	
 	Free( data );

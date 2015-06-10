@@ -191,7 +191,7 @@ void CGaussianDPM::SaveModel( const char *dir )
 {
 	char dirname[256];
 	char filename[256];
-	FILE *fpPz, *fpTable;
+	FILE *fpPz, *fpTable,*fpTableTest;
 
 	strcpy( dirname , dir );
 	int len = (int)strlen( dir );
@@ -205,7 +205,7 @@ void CGaussianDPM::SaveModel( const char *dir )
 		SaveArray( m_numTables , (int)m_numTables.size() , filename );
 	}
 
-	// 各クラスに属する確率を保存
+	// 各クラスに属する確率を保存訓練データ
 	sprintf( filename , "%sLogLiklihood.txt" , dirname );
 	fpPz = fopen( filename , "w" );
 	sprintf( filename , "%sClusteringResult.txt" , dirname );
@@ -229,6 +229,25 @@ void CGaussianDPM::SaveModel( const char *dir )
 	}
 	fclose(fpPz);
 	fclose(fpTable);
+	// 各クラスに属する確率を保存テストデータ
+	sprintf(filename, "%sClusteringResultTest.txt", dirname);
+	fpTableTest = fopen(filename, "w");
+	for (int d = 0; d<m_numData2; d++)
+	{
+		double max = -DBL_MAX;
+		int maxIdx = -1;
+		for (int t = 0; t<m_tables.size(); t++)
+		{
+			double lik = m_tables[t].CalcLogLikilihood(m_data2[d]);
+			if (max < lik)
+			{
+				max = lik;
+				maxIdx = t;
+			}
+		}
+		fprintf(fpTableTest, "%d\n", maxIdx);
+	}
+	fclose(fpTableTest);
 }
 
 std::vector<int> CGaussianDPM::GetClusteringResult()
