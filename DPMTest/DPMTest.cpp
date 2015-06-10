@@ -17,12 +17,18 @@ int _tmain(int argc, _TCHAR* argv[])
 	CGaussianDPM dpm;			// DPMクラス
 	int num, dim;				// データ数と次元
 	std::vector<int> cluster;	//
-
-	// データの読み込み
+	std::vector<int> cluster2;
+	// データの読み込み 訓練データ
 	double **data = LoadMatrix<double>( dim , num , "GetPositionBase.txt" );
 
-	// データを渡す
+	//データの読み込み　テストデータ
+	double **data2 = LoadMatrix<double>(dim, num, "GetPositionBase.txt");
+
+	// データを渡す 訓練データ
 	dpm.SetData( data , num , dim );
+
+	// データを渡す テストデータ
+	dpm.SetData2(data2, num, dim);
 
 	// パラメタの更新
 	for(int i=0 ; i<300 ; i++ )
@@ -41,9 +47,15 @@ int _tmain(int argc, _TCHAR* argv[])
 	{
 		printf("%d	->	%d\n" , i , cluster[i] );
 	}
-
+	
+	cluster2 = dpm.GetClusteringResult2();
+	for (int i = 0; i<cluster2.size(); i++)
+	{
+		printf("%d	->	%d\n\n", i, cluster2[i]);
+	}
+	
 	Free( data );
-
+	Free(data2);
 	return 0;
 }
 

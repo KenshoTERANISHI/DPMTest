@@ -32,6 +32,13 @@ void CGaussianDPM::Release()
 	m_tableID = NULL;
 }
 
+void CGaussianDPM::Release2()
+{
+	delete[] m_tableID2;
+	delete[] m_dataIndices2;
+	m_tableID2 = NULL;
+}
+
 void CGaussianDPM::SetData( double **data , int numData , int dim )
 {
 	Release();
@@ -53,6 +60,29 @@ void CGaussianDPM::SetData( double **data , int numData , int dim )
 
 	m_numTables.clear();
 	m_numTables.reserve(1000);
+}
+
+void CGaussianDPM::SetData2(double **data, int numData, int dim)
+{
+	//Release2();
+
+	//m_init2.Create(dim);
+	//m_init2.Init(data, numData);	// データから初期値を決定
+
+	m_dataIndices2 = new int[numData];
+	for (int n = 0; n<numData; n++) m_dataIndices2[n] = n;
+
+	m_data2 = data;
+	m_dimData2 = dim;
+	m_numData2 = numData;
+	m_tableID2 = new int[numData];
+	for (int i = 0; i<numData; i++) m_tableID2[i] = -1;
+
+	m_tables2.clear();
+	//m_tables2.push_back(CGaussianTable(m_init2));	// 空のテーブルを1つ生成
+
+	//m_numTables2.clear();
+	//m_numTables2.reserve(1000);
 }
 
 
@@ -210,8 +240,7 @@ std::vector<int> CGaussianDPM::GetClusteringResult()
 		double max = -DBL_MAX;
 		int maxIdx = -1;
 		for(int t=0 ; t<m_tables.size() ; t++ )
-		{
-			double lik = m_tables[t].CalcLogLikilihood( m_data[d] );
+		{			double lik = m_tables[t].CalcLogLikilihood( m_data[d] );
 			if( max < lik )
 			{
 				max = lik;
@@ -219,6 +248,28 @@ std::vector<int> CGaussianDPM::GetClusteringResult()
 			}
 		}
 		clst.push_back( maxIdx );
+	}
+	return clst;
+}
+
+std::vector<int> CGaussianDPM::GetClusteringResult2()
+{
+	std::vector<int> clst;
+
+	for (int d = 0; d<m_numData2; d++)
+	{
+		double max = -DBL_MAX;
+		int maxIdx = -1;
+		for (int t = 0; t<m_tables.size(); t++)
+		{
+			double lik = m_tables[t].CalcLogLikilihood(m_data2[d]);
+			if (max < lik)
+			{
+				max = lik;
+				maxIdx = t;
+			}
+		}
+		clst.push_back(maxIdx);
 	}
 	return clst;
 }

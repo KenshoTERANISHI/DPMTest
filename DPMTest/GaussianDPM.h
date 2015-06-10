@@ -19,29 +19,32 @@ public:
 	CGaussianDPM(void);
 	~CGaussianDPM(void);
 
-	void SetData( double **data , int numData , int dim );	// データのセット
+	void SetData(double **data, int numData, int dim);	// 訓練データのセット
+	void SetData2(double **data, int numData, int dim);     // テストデータのセット
 	void Updata();											// パラメータ更新
-	void SaveModel( const char *dir );						// モデルの保存
+	void SaveModel(const char *dir);						// モデルの保存
 	std::vector<int> GetClusteringResult();					// クラスタリング結果を取得
+	std::vector<int> GetClusteringResult2();					// クラスタリング結果を取得
 
 protected:
 	void Release();								// メモリ解放
-	int Sampling( double *data );				// 客が座るテーブルのサンプリング
-	double SamplingGamma( double oldGamma );	// concentrate paramter のサンプリング
+	void Release2();
+	int Sampling(double *data);				// 客が座るテーブルのサンプリング
+	double SamplingGamma(double oldGamma);	// concentrate paramter のサンプリング
 	void DeleteEmptyTables();					// 空のテーブルを削除
-	void DeleteTable( int t );					// 特定のテーブルを削除
+	void DeleteTable(int t);					// 特定のテーブルを削除
 
-	int m_numData;								// データ数
-	int m_dimData;								// データの次元
-	int *m_dataIndices;
-	double **m_data;							// データ
-	int *m_tableID;								// データが座ったテーブル
+	int m_numData, m_numData2;								// データ数
+	int m_dimData, m_dimData2;								// データの次元
+	int *m_dataIndices,*m_dataIndices2;
+	double **m_data,**m_data2;							// データ
+	int *m_tableID,*m_tableID2;								// データが座ったテーブル
 	double m_gamma;
-	std::vector<CGaussianTable> m_tables;		// データが座るテーブル
-	std::vector<int> m_numTables;				// 各回でのテーブルの数
+	std::vector<CGaussianTable> m_tables,m_tables2;		// データが座るテーブル
+	std::vector<int> m_numTables,m_numTables2;				// 各回でのテーブルの数
 	double m_Pz[MAX_TABLES];					// 計算用バッファ
 
-	GaussianParams m_init;						// 初期値
+	GaussianParams m_init,m_init2;						// 初期値
 
 };
 
