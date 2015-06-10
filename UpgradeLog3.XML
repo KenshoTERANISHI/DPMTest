@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="DPMTest">
+</Property><Property Name="ソリューション ファイル" Value="X:\堀元データ\GaussDPMTest ver0.4\DPMTest.sln">
+</Property><Property Name="ユーザー オプション ファイル" Value="X:\堀元データ\GaussDPMTest ver0.4\DPMTest.suo">
+</Property><Property Name="Date" Value="2015年4月14日">
+</Property><Property Name="Time" Value="16:47">
+</Property><Property Name="ログ番号" Value="3">
+</Property></Properties><Event ErrorLevel="2" Project="" Source="DPMTest.sln" Description="バックアップ ファイル X:\堀元データ\GaussDPMTest ver0.4\DPMTest.sln.old の作成中にエラーが発生しました">
+</Event><Event ErrorLevel="2" Project="" Source="DPMTest.suo" Description="バックアップ ファイル X:\堀元データ\GaussDPMTest ver0.4\DPMTest.suo.old の作成中にエラーが発生しました">
+</Event><Event ErrorLevel="0" Project="DPMTest" Source="DPMTest\DPMTest.vcproj" Description="Converting project file 'X:\堀元データ\GaussDPMTest ver0.4\DPMTest\DPMTest.vcproj'.">
+</Event><Event ErrorLevel="1" Project="DPMTest" Source="DPMTest\DPMTest.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="1" Project="DPMTest" Source="DPMTest\DPMTest.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="1" Project="DPMTest" Source="DPMTest\DPMTest.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="0" Project="DPMTest" Source="DPMTest\DPMTest.vcproj" Description="Done converting to new project file 'X:\堀元データ\GaussDPMTest ver0.4\DPMTest\DPMTest.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="DPMTest" Source="DPMTest\DPMTest.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="DPMTest.sln" Description="ソリューションは正常に変換されました">
+</Event><Event ErrorLevel="3" Project="" Source="DPMTest.sln" Description="Converted">
+</Event></UpgradeLog>
